@@ -8,7 +8,7 @@
 % ============================================================
 \documentclass[10pt,a4paper]{article}
 
-\ifprivate\def\bandH{4.65}\else\def\bandH{4.25}\fi
+\def\bandH{4.25}
 \usepackage[a4paper,left=1.35cm,right=1.35cm,top=\dimexpr\bandH cm+0.7cm\relax,bottom=0.9cm]{geometry}
 \usepackage{fontspec}
 \usepackage{xcolor}
@@ -56,7 +56,7 @@
 
 % Experience timeline entry: #1 filled? (true/false) #2 logo #3 title
 % #4 company #5 dates #6 place, body = bullets
-\newtcolorbox{tlentry}[1]{enhanced,blank,left=13pt,top=0pt,bottom=11pt,
+\newtcolorbox{tlentry}[1]{enhanced,blank,left=13pt,top=0pt,bottom=8pt,
   borderline west={0.7pt}{3.2pt}{lunar!35},
   overlay={%
     \ifx#1t%
@@ -73,7 +73,9 @@
   {\mono\fontsize{7.5}{9}\selectfont\color{mute}#4\hspace{6pt}\textbar\hspace{6pt}#5}\par
   \vspace{2pt}}
 
-\setlist[itemize]{leftmargin=9pt,labelsep=4pt,itemsep=3.2pt,topsep=2pt,parsep=0pt,before=\raggedright\fontsize{9.4}{12.2}\selectfont,
+\newcommand{\subrole}[1]{\par\vspace{3pt}{\mono\fontsize{7.6}{9}\selectfont\color{teal}\rule[0.5pt]{4pt}{4pt}\hspace{4pt}\MakeUppercase{#1}}\par}
+
+\setlist[itemize]{leftmargin=9pt,labelsep=4pt,itemsep=2pt,topsep=1.5pt,parsep=0pt,before=\raggedright\fontsize{9.2}{11.6}\selectfont,
   label={\color{orange}\scriptsize\raisebox{1pt}{$\blacktriangleright$}}}
 
 \newtcbox{\chip}{on line,enhanced,boxrule=0.5pt,arc=1.6pt,
@@ -114,7 +116,7 @@
   % identity
   \node[anchor=north west,inner sep=0pt,text width=13.3cm,align=left]
     at ($(current page.north west)+(1.35cm,-0.82cm)$) {%
-    {\mono\fontsize{7.5}{9}\selectfont\color{orange}\spaced{20}{// CURRICULUM VITAE · 2026}}\\[5pt]
+    \ifprivate\else{\mono\fontsize{7.5}{9}\selectfont\color{orange}\spaced{20}{// CURRICULUM VITAE · 2026}}\\[5pt]\fi
     {\adv\bfseries\fontsize{30}{32}\selectfont\color{cream}\spaced{4}{MATTIA}\hspace{0.32em}\spaced{4}{PAGETTI}}\\[4pt]
     {\adv\fontsize{12}{14}\selectfont\color{mustard}\spaced{12}{SENIOR DATA ENGINEER}}\\[9pt]
     {\fontsize{8.4}{13}\selectfont\color{cream}%
@@ -137,9 +139,9 @@
 Data engineer with six years of building data platforms on \kw{AWS} and \kw{Azure}: from
 \kw{Spark}/\kw{Iceberg} lakehouses and \kw{Airflow} pipelines to \kw{Databricks} platforms landed
 inside locked-down, multi-account cloud estates. Physics engineer by training, platform engineer
-by habit: I like infrastructure that is reproducible, secure by default and pleasant to use.\par}
+by habit.\par}
 \end{tcolorbox}
-\vspace{11pt}
+\vspace{8pt}
 
 % ---------- body -------------------------------------------------
 \begin{minipage}[t]{0.605\textwidth}
@@ -148,8 +150,8 @@ by habit: I like infrastructure that is reproducible, secure by default and plea
 \begin{tlentry}{t}
 \entryhead{nearform_logo.png}{Senior Data Engineer}{Nearform}{03/2026 – now}{Tramore, IE / Milano, IT}
 \begin{itemize}
-  \item I help clients build modern, scalable \kw{Databricks} platforms with solid CI/CD
-        foundations: AI-ready from day one and shipped faster with AI-native developer tooling.
+  \item I help clients build scalable \kw{Databricks} platforms with solid CI/CD foundations,
+        AI-ready from day one.
   \item For a UK healthcare provider I designed and built, end to end, a \kw{Databricks on AWS}
         platform in \kw{Terraform}: a customer-managed-VPC workspace per environment on a shared
         \kw{Unity Catalog} metastore, one landing-zone KMS key for all storage and managed
@@ -163,30 +165,37 @@ by habit: I like infrastructure that is reproducible, secure by default and plea
 
 \begin{tlentry}{f}
 \entryhead{truelayer_logo.png}{Senior Data Engineer $\leftarrow$ Data Engineer}{TrueLayer}{02/2022 – 01/2026}{London, UK / Milano, IT}
+\subrole{Senior Data Engineer}
 \begin{itemize}
-  \item Built and ran pipelines aggregating microservice databases, queues, third-party APIs and
-        Elasticsearch into S3 (Parquet/\kw{Iceberg}), processed with \kw{Spark} on \kw{EMR},
-        queried via Athena and orchestrated by \kw{Airflow} DAGs or \kw{Kubernetes} services.
-  \item Promoted to Senior in February 2023, I designed and implemented a new data platform from
-        the ground up: automated Aurora snapshots loaded into \kw{Redshift} via \kw{ECS}, \kw{Glue}
-        and Step Functions, models in \kw{DBT}, infrastructure in \kw{Terraform}.
+  \item Designed and implemented a new data platform from the ground up: Aurora RDS snapshots
+        loaded into \kw{Redshift} via \kw{ECS} and \kw{Step Functions}, modelled in \kw{DBT},
+        improving scalability and data access across teams.
+  \item Built an internal \kw{Python} package to streamline data workflows and governance, and
+        let engineers query product databases directly through Redshift.
+  \item Experimented with \kw{MCP} servers and clients for LLM-based natural-language querying
+        of Redshift, as Python microservices on \kw{Kubernetes}.
+\end{itemize}
+\subrole{Data Engineer}
+\begin{itemize}
+  \item Built pipelines from microservice databases, Elasticsearch and third-party APIs into S3
+        (Parquet/\kw{Iceberg}), using \kw{Spark} on \kw{EMR} for large volumes.
+  \item Developed \kw{Airflow} DAGs on Kubernetes; supported company-wide analytics through
+        \kw{Athena} and BI tools; managed all AWS infrastructure with \kw{Terraform}.
 \end{itemize}
 \end{tlentry}
 
 \begin{tlentry}{f}
 \entryhead{illimity_logo.png}{Big Data Engineering Junior Specialist}{Illimity}{05/2020 – 02/2022}{Milano, IT}
 \begin{itemize}
-  \item Developed and maintained Illimity's data streams on Azure with \kw{Databricks},
-        \kw{Data Factory}, \kw{Delta Lake} and \kw{MongoDB}, with all workflows managed through
-        Azure DevOps.
+  \item Built and maintained data streams on Azure with \kw{Databricks}, \kw{Data Factory},
+        \kw{Delta Lake} and \kw{MongoDB}, delivered through Azure DevOps.
 \end{itemize}
 \end{tlentry}
 
 \begin{tlentry}{f}
 \entryhead{max_planck.png}{Doctoral Student}{Max Planck Institute (MPSD)}{09/2019 – 04/2020}{Hamburg, DE}
 \begin{itemize}
-  \item Theoretical and computational analysis of RIXS cross-sections, running advanced
-        simulations of realistic condensed-matter systems.
+  \item Computational analysis of RIXS cross-sections in realistic condensed-matter systems.
 \end{itemize}
 \end{tlentry}
 \end{minipage}%

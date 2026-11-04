@@ -30,7 +30,8 @@ export function TopBar() {
         </nav>
         <a
           href={CV_URL}
-          download
+          download="Mattia_Pagetti_CV_2026.pdf"
+          type="application/pdf"
           className="flex items-center gap-2 border-2 border-ink bg-ink px-3 py-1 font-pixel text-[15px] text-cream transition-colors hover:bg-orange hover:text-ink"
         >
           <Download size={15} /> CV.pdf
@@ -129,7 +130,8 @@ export function Hero() {
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <a
             href={CV_URL}
-            download
+            download="Mattia_Pagetti_CV_2026.pdf"
+            type="application/pdf"
             className="flex items-center gap-2 border-2 border-ink bg-orange px-6 py-3 font-pixel text-base text-ink shadow-[4px_4px_0_0_hsl(var(--mustard))] transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_hsl(var(--mustard))]"
           >
             <Download size={18} /> Download CV

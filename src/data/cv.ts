@@ -23,6 +23,8 @@ export interface ExperienceEntry {
   description: string[];
   tags: string[];
   current?: boolean;
+  /** optional sub-roles (e.g. a promotion), each with its own bullets, shown after `description` */
+  roles?: { title: string; bullets: string[] }[];
   /** short handle for the window title bar */
   id?: string;
 }
@@ -48,11 +50,28 @@ export const experience: ExperienceEntry[] = [
     logo: "logos/truelayer_logo.png",
     period: "02/2022 – 01/2026",
     location: "London, UK / Milano, IT",
-    description: [
-      "Built and ran pipelines aggregating microservice databases, queues, third-party APIs and Elasticsearch into S3 (Parquet/**Iceberg**), processed with **Spark** on **EMR**, queried via Athena and orchestrated by **Airflow** DAGs or **Kubernetes** services.",
-      "Promoted to Senior in February 2023, I designed and implemented a new data platform from the ground up: automated Aurora snapshots loaded into **Redshift** via **ECS**, **Glue** and Step Functions, models in **DBT**, infrastructure in **Terraform**.",
+    description: [],
+    roles: [
+      {
+        title: "Senior Data Engineer",
+        bullets: [
+          "Designed and implemented a new data platform from the ground up, integrating Aurora RDS, **Redshift**, **DBT**, S3, **ECS** and **Step Functions**: automated Aurora snapshots loaded into Redshift and modelled in DBT, improving scalability and data accessibility across teams.",
+          "Built an internally maintained **Python** package to streamline data workflows and governance.",
+          "Enabled engineers to query product databases directly through Redshift, reducing their dependency on centralised data teams.",
+          "Experimented with **MCP** servers and clients exposing data tools for LLM-based natural-language querying of Redshift, deployed as Python microservices on **Kubernetes** to bridge AI-assisted data retrieval and production systems.",
+        ],
+      },
+      {
+        title: "Data Engineer",
+        bullets: [
+          "Built and maintained pipelines integrating microservice databases, Elasticsearch, third-party APIs and other sources into S3 (Parquet/**Iceberg**), using **Spark** on **EMR** to handle large volumes.",
+          "Developed **Airflow** DAGs running on **Kubernetes** for reliable, automated orchestration.",
+          "Supported company-wide analytics through **Athena**, letting analysts build and scale reporting in BI tools.",
+          "Managed all AWS infrastructure with **Terraform**, for consistent and reproducible deployments.",
+        ],
+      },
     ],
-    tags: ["Spark", "EMR", "Airflow", "Iceberg", "Redshift", "DBT", "Terraform", "Athena", "Kubernetes"],
+    tags: ["Redshift", "DBT", "Python", "Spark", "EMR", "Airflow", "Iceberg", "Athena", "Kubernetes", "Terraform", "Step Functions", "MCP"],
   },
   {
     title: "Big Data Engineering Junior Specialist",
