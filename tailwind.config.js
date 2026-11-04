@@ -1,45 +1,46 @@
 /** @type {import('tailwindcss').Config} */
+const tok = (name) => `hsl(var(--${name}) / <alpha-value>)`;
+
 export default {
   darkMode: ["class"],
-  content: [
-    "./index.html",
-    "./src/**/*.{ts,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['"Space Grotesk"', "system-ui", "sans-serif"],
+        display: ['"Adventor"', '"Century Gothic"', '"Futura"', "sans-serif"],
+        pixel: ['"Pixelify Sans"', "ui-monospace", "monospace"],
+      },
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      animation: {
+        drift: "drift 120s linear infinite",
       },
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))'
-        },
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))'
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))'
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))'
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))'
-        },
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-      }
-    }
+        paper: { DEFAULT: tok("paper"), hi: tok("paper-hi"), lo: tok("paper-lo") },
+        ink: tok("ink"),
+        mute: tok("mute"),
+        lunar: { DEFAULT: tok("lunar"), 2: tok("lunar-2") },
+        cream: tok("cream"),
+        orange: tok("orange"),
+        mustard: tok("mustard"),
+        teal: tok("teal"),
+
+        background: tok("background"),
+        foreground: tok("foreground"),
+        card: { DEFAULT: tok("card"), foreground: tok("card-foreground") },
+        primary: { DEFAULT: tok("primary"), foreground: tok("primary-foreground") },
+        secondary: { DEFAULT: tok("secondary"), foreground: tok("secondary-foreground") },
+        muted: { DEFAULT: tok("muted"), foreground: tok("muted-foreground") },
+        accent: { DEFAULT: tok("accent"), foreground: tok("accent-foreground") },
+        border: tok("border"),
+        input: tok("input"),
+        ring: tok("ring"),
+      },
+    },
   },
   plugins: [],
-}
+};

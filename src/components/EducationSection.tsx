@@ -1,32 +1,23 @@
-import { Card } from "@/components/retroui/Card";
 import { education } from "@/data/cv";
+import { SectionHeading, Window } from "@/components/Window";
 
 export function EducationSection() {
   return (
     <div>
-      <h2 className="mb-6 border-b-2 pb-3 text-3xl font-black uppercase tracking-tight">
-        Education
-      </h2>
-      <div className="flex flex-col gap-4">
-        {education.map((entry) => (
-          <Card
-            key={entry.degree}
-            className="w-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-          >
-            <Card.Header className="border-b-2 bg-secondary">
-              <Card.Title className="text-base font-black uppercase">
-                {entry.degree}
-              </Card.Title>
-              <p className="font-bold">{entry.institution}</p>
-            </Card.Header>
-            <Card.Content className="pt-3">
-              <p className="font-mono text-sm">{entry.period}</p>
-              {entry.note && (
-                <p className="mt-1 text-sm text-foreground/60">{entry.note}</p>
-              )}
-              <p className="mt-2 font-black">Grade: {entry.grade}</p>
-            </Card.Content>
-          </Card>
+      <SectionHeading index="03" title="Education" id="education" />
+      <div className="space-y-6">
+        {education.map((e) => (
+          <Window key={e.degree} title={`${e.degree.split(" ")[0].toLowerCase()}.diploma`} lit={0}>
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h3 className="font-display text-lg font-bold uppercase tracking-wide">{e.degree}</h3>
+              <span className="font-pixel text-mute">{e.period}</span>
+            </div>
+            <p className="mt-0.5 font-semibold text-orange">{e.institution}</p>
+            {e.note && <p className="mt-2 text-[15px]">{e.note}</p>}
+            <p className="mt-3 inline-block border-[1.5px] border-ink bg-mustard px-2 font-pixel text-sm">
+              Final grade {e.grade}
+            </p>
+          </Window>
         ))}
       </div>
     </div>

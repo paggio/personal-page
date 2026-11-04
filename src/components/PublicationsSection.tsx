@@ -1,34 +1,32 @@
-import { ExternalLink } from "lucide-react";
-import { Button } from "@/components/retroui/Button";
+import { ArrowUpRight } from "lucide-react";
 import { publications } from "@/data/cv";
+import { SectionHeading, Window } from "@/components/Window";
 
 export function PublicationsSection() {
   return (
-    <section className="px-6 py-12 md:px-16">
-      <div className="mx-auto max-w-4xl">
-        <h2 className="mb-8 border-b-2 pb-3 text-3xl font-black uppercase tracking-tight">
-          Publications
-        </h2>
-        <div className="flex flex-col gap-4">
-          {publications.map((pub) => (
-            <div
-              key={pub.url}
-              className="border-2 bg-card p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+    <div>
+      <SectionHeading index="04" title="Papers" id="publications" />
+      <div className="space-y-6">
+        {publications.map((p) => (
+          <Window key={p.url} title="arxiv_1906.01270.pdf" lit={1} className="shadow-[6px_6px_0_0_hsl(var(--teal))]">
+            <p className="font-pixel text-mute">
+              {p.institution} · {p.year}
+            </p>
+            <h3 className="mt-2 font-display text-lg font-bold leading-snug">{p.title}</h3>
+            <p className="mt-3 text-[15px] text-mute">
+              On the actual role of electron-phonon coupling in high-T<sub>c</sub> superconductors.
+            </p>
+            <a
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 border-2 border-ink px-4 py-2 font-pixel transition-colors hover:bg-ink hover:text-cream"
             >
-              <p className="mb-1 font-mono text-xs font-bold uppercase tracking-widest text-foreground/50">
-                {pub.year} · {pub.institution}
-              </p>
-              <p className="mb-4 font-bold leading-snug">{pub.title}</p>
-              <a href={pub.url} target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" size="sm" className="gap-1.5">
-                  <ExternalLink size={14} />
-                  arXiv
-                </Button>
-              </a>
-            </div>
-          ))}
-        </div>
+              Read on arXiv <ArrowUpRight size={16} />
+            </a>
+          </Window>
+        ))}
       </div>
-    </section>
+    </div>
   );
 }
