@@ -39,8 +39,8 @@ export const experience: ExperienceEntry[] = [
     current: true,
     description: [
       "I help clients build modern, scalable **Databricks** platforms with solid CI/CD foundations: AI-ready from day one and shipped faster with AI-native developer tooling.",
-      "For a UK healthcare provider I designed and built, end to end, a **Databricks on AWS** platform in **Terraform**: a customer-managed-VPC workspace per environment on a shared **Unity Catalog** metastore, one landing-zone KMS key for all storage and managed services, back-end **PrivateLink** and Object-Locked audit logs, all deployed through **GitHub Actions** (OIDC, tflint, checkov).",
-      "Authored the **AWS Landing Zone Accelerator** changes Databricks needed in a locked-down multi-account organisation: scoped RCP exceptions, private VPC endpoints, and closing a remediation path that gave cluster nodes a privileged IAM role.",
+      "For a UK healthcare provider I designed and built, end to end, a **Databricks on AWS** platform in **Terraform**: a customer-managed-VPC workspace per environment on a shared **Unity Catalog** metastore, back-end **PrivateLink** and Object-Locked audit logs, all deployed through **GitHub Actions** (OIDC, tflint, checkov).",
+      "Authored the **AWS Landing Zone Accelerator** changes Databricks needed in a locked-down multi-account organisation: scoped RCP exceptions, private VPC endpoints.",
     ],
     tags: ["Databricks", "Terraform", "Unity Catalog", "AWS LZA", "PrivateLink", "GitHub Actions", "DBT", "LangGraph"],
   },
