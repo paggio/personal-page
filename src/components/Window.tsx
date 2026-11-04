@@ -55,13 +55,11 @@ export function Window({ title, icon, lit = 1, className, bodyClassName, dark, c
   );
 }
 
-export function SectionHeading({ index, kicker, title, id }: { index: string; kicker: string; title: string; id: string }) {
+export function SectionHeading({ index, title, id }: { index: string; title: string; id: string }) {
   return (
     <div className="mb-8 flex items-end gap-4 sm:mb-10">
       <div className="shrink-0">
-        <p className="font-pixel text-sm text-orange">
-          {index} <span className="text-mute">/ {kicker}</span>
-        </p>
+        <p className="font-pixel text-sm text-orange">{index}</p>
         <h2 id={id} className="font-display text-3xl font-bold uppercase tracking-[0.08em] sm:text-4xl">
           {title}
         </h2>

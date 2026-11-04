@@ -8,7 +8,7 @@ export function ExperienceSection() {
   return (
     <section className="px-4 py-16 sm:px-6 md:py-24">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading index="01" kicker="Floors" title="Experience" id="experience" />
+        <SectionHeading index="01" title="Experience" id="experience" />
 
         <ol className="relative">
           {experience.map((entry, i) => {

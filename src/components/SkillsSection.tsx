@@ -7,7 +7,7 @@ export function SkillsSection() {
   return (
     <section className="border-y-2 border-ink bg-paper-lo/60 px-4 py-16 sm:px-6 md:py-24">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading index="02" kicker="Amenities" title="Skills" id="skills" />
+        <SectionHeading index="02" title="Skills" id="skills" />
         <div className="grid gap-6 md:grid-cols-3">
           {skills.map((group, i) => (
             <Window

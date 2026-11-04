@@ -36,7 +36,7 @@
 \definecolor{lunar}{HTML}{16202B}    % night sky
 \definecolor{lunarsoft}{HTML}{2B3A4A}
 \definecolor{cream}{HTML}{F4EDE1}    % paper
-\definecolor{orange}{HTML}{D9622B}   % lounge-lamp orange
+\definecolor{orange}{HTML}{D9622B}   % warm lamp orange
 \definecolor{mustard}{HTML}{E3A72F}
 \definecolor{teal}{HTML}{2E6B73}
 \definecolor{ink}{HTML}{1E1E1E}
@@ -98,12 +98,7 @@
                         10.4/-1.9/0.35,15.9/-0.7/0.5,17.6/-1.3/0.35,19.2/-0.5/0.45,
                         18.3/-3.2/0.35,9.6/-0.4/0.3,16.8/-3.5/0.4,12.8/-3.3/0.3}
     \fill[cream!85] ($(current page.north west)+(\x,\y)$) circle (\r pt);
-  % orbits around the portrait
   \coordinate (P) at ($(current page.north east)+(-3.05cm,-2.25cm)$);
-  \draw[lunarsoft,line width=0.6pt,rotate around={-14:(P)}] (P) ellipse (3.6cm and 0.95cm);
-  \draw[lunarsoft,line width=0.6pt,rotate around={-14:(P)}] (P) ellipse (2.6cm and 0.62cm);
-  \fill[mustard] ($(P)+(-3.35cm,0.95cm)$) circle (2.1pt);
-  \fill[orange]  ($(P)+(2.15cm,-0.85cm)$) circle (1.6pt);
   % 70s triple stripe
   \fill[mustard] (B) rectangle ($(B)+(\paperwidth,-0.11cm)$);
   \fill[orange]  ($(B)+(0,-0.14cm)$) rectangle ($(B)+(\paperwidth,-0.25cm)$);
@@ -229,6 +224,4 @@ Nd\textsubscript{1+x}Ba\textsubscript{2−x}Cu\textsubscript{3}O\textsubscript{7
 superconductors, investigated. \href{https://arxiv.org/abs/1906.01270}{\color{teal}\mono\fontsize{7.5}{9}\selectfont arXiv:1906.01270 \faExternalLink*}}\par
 \end{minipage}
 
-\vfill
-{\centering\mono\fontsize{6.5}{8}\selectfont\color{mute}\spaced{30}{THANK YOU FOR STAYING · PLEASE RETURN YOUR KEY AT RECEPTION}\par}
 \end{document}

@@ -2,8 +2,9 @@
 
 ## What this project is
 A personal CV / portfolio web page for Mattia Pagetti (Senior Data Engineer).
-Single-page React app. Look: retro-futurist "lunar lounge" — Pixel Poetry-style framed windows,
-pixel type and step timeline, plus a 70s space-age palette (night-sky navy, lounge orange, mustard, teal).
+Single-page React app. Look: retro-futurist — Pixel Poetry-style framed windows, pixel type and
+step timeline, plus a 70s space-age palette (night-sky navy, warm orange, mustard, teal).
+The space-age feel is purely visual: no hotel/"reception" copy or puns anywhere.
 
 ## Stack
 - **React 18 + TypeScript + Vite 6**
@@ -56,7 +57,7 @@ Two copies of the content, keep them in sync:
 - Fonts: `font-display` = TeX Gyre Adventor (self-hosted in `public/fonts/`, same as the PDF),
   `font-pixel` = Pixelify Sans, `font-sans` = Space Grotesk (Google Fonts, in `index.html`).
 - Building blocks in `src/components/Window.tsx`: `Window` (framed panel + title bar + dots),
-  `SectionHeading`, `Chip`, `renderBold`. Hero art is `LunarScene.tsx` (hand-written SVG).
+  `SectionHeading`, `Chip`, `renderBold`. The stack ticker (`StackTicker` in `Hero.tsx`) sits under the top bar.
 - RetroUI components in `src/components/retroui/` are no longer used by the page.
 
 ## Branch previews

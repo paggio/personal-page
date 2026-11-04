@@ -1,7 +1,6 @@
 import { Download, Mail, MapPin, Linkedin, Github, ArrowUpRight } from "lucide-react";
-import { cvMeta } from "@/data/cv";
-import { Window, renderBold } from "@/components/Window";
-import { LunarScene } from "@/components/LunarScene";
+import { cvMeta, skills } from "@/data/cv";
+import { renderBold } from "@/components/Window";
 
 export const CV_URL = `${import.meta.env.BASE_URL}CV_2026.pdf`;
 
@@ -41,95 +40,109 @@ export function TopBar() {
   );
 }
 
-function ContactRow({ icon, label, children }: { icon: React.ReactNode; label: string; children: React.ReactNode }) {
+const link = "underline decoration-cream/30 underline-offset-4 hover:text-mustard hover:decoration-mustard";
+
+function Contact({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
   return (
-    <li className="flex items-center gap-3 border-b border-cream/15 py-2">
+    <li className="flex items-center gap-2">
       <span className="text-mustard">{icon}</span>
-      <span className="w-9 shrink-0 font-pixel text-xs text-cream/50">{label}</span>
-      <span className="min-w-0 truncate">{children}</span>
+      {children}
     </li>
   );
 }
 
-const link = "underline decoration-cream/30 underline-offset-4 hover:text-mustard hover:decoration-mustard";
+/** Scrolling pixel ticker of the stack, pinned under the top bar. */
+export function StackTicker() {
+  const items = skills.flatMap((g) => g.items);
+  const run = (
+    <span className="flex shrink-0 items-center gap-6 pr-6">
+      {items.map((s) => (
+        <span key={s} className="flex items-center gap-6">
+          {s} <span className="text-mustard" aria-hidden>✦</span>
+        </span>
+      ))}
+    </span>
+  );
+  return (
+    <div className="overflow-hidden border-b border-cream/15 bg-lunar py-2.5 font-pixel text-[15px] text-cream" aria-hidden>
+      <div className="marquee-track flex w-max">
+        {run}
+        {run}
+      </div>
+    </div>
+  );
+}
 
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden bg-lunar text-cream">
       <div className="starfield pointer-events-none absolute inset-0" aria-hidden />
+      {/* slow orbits framing the centred block */}
       <div
-        className="animate-drift pointer-events-none absolute -right-40 -top-40 h-[34rem] w-[34rem] rounded-full border border-cream/10"
+        className="animate-drift pointer-events-none absolute -right-48 -top-56 h-[36rem] w-[36rem] rounded-full border border-cream/10"
         aria-hidden
       >
         <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-mustard" />
       </div>
+      <div
+        className="animate-drift pointer-events-none absolute -bottom-72 -left-56 h-[40rem] w-[40rem] rounded-full border border-cream/10 [animation-direction:reverse]"
+        aria-hidden
+      >
+        <span className="absolute bottom-0 left-1/2 h-1.5 w-1.5 -translate-x-1/2 translate-y-1/2 rounded-full bg-orange" />
+      </div>
 
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:py-14 lg:grid-cols-[1.15fr_1fr] lg:items-center">
-        <div>
-          <p className="font-pixel text-sm text-orange sm:text-base">// Reception · now checking in</p>
-          <h1 className="mt-3 font-display text-[2.9rem] font-bold uppercase leading-[0.95] tracking-[0.04em] sm:text-7xl">
-            Mattia
-            <br />
-            Pagetti
-          </h1>
-          <p className="mt-4 font-display text-lg uppercase tracking-[0.3em] text-mustard sm:text-xl">
-            {cvMeta.tagline}
-          </p>
+      <div className="relative mx-auto flex max-w-4xl flex-col items-center px-4 py-16 text-center sm:px-6 md:py-24">
+        <h1 className="font-display text-[2.9rem] font-bold uppercase leading-[0.95] tracking-[0.04em] sm:text-7xl lg:text-8xl">
+          Mattia <br className="sm:hidden" />
+          Pagetti
+        </h1>
+        <p className="mt-5 font-display text-lg uppercase tracking-[0.3em] text-mustard sm:text-2xl sm:tracking-[0.4em]">
+          {cvMeta.tagline}
+        </p>
 
-          <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-cream/80 sm:text-base">
-            {renderBold(cvMeta.profile, "font-semibold text-cream")}
-          </p>
+        <p className="mt-8 max-w-2xl text-[15px] leading-relaxed text-cream/80 sm:text-lg">
+          {renderBold(cvMeta.profile, "font-semibold text-cream")}
+        </p>
 
-          <p className="mt-5 inline-flex items-center gap-2 border border-cream/25 px-3 py-1 font-pixel text-sm">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-orange" aria-hidden />
-            <span className="cursor">{cvMeta.now}</span>
-          </p>
+        <p className="mt-7 inline-flex items-center gap-2 border border-cream/25 px-3 py-1 font-pixel text-sm">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-orange" aria-hidden />
+          <span className="cursor">{cvMeta.now}</span>
+        </p>
 
-          <ul className="mt-6 grid max-w-xl text-sm sm:grid-cols-2 sm:gap-x-8">
-            <ContactRow icon={<Mail size={15} />} label="MAIL">
-              <a className={link} href={`mailto:${cvMeta.email}`}>{cvMeta.email}</a>
-            </ContactRow>
-            <ContactRow icon={<Linkedin size={15} />} label="IN">
-              <a className={link} href={`https://linkedin.com/in/${cvMeta.linkedin}`} target="_blank" rel="noopener noreferrer">
-                {cvMeta.linkedin}
-              </a>
-            </ContactRow>
-            <ContactRow icon={<Github size={15} />} label="GH">
-              <a className={link} href={`https://github.com/${cvMeta.github}`} target="_blank" rel="noopener noreferrer">
-                github.com/{cvMeta.github}
-              </a>
-            </ContactRow>
-            <ContactRow icon={<MapPin size={15} />} label="BASE">
-              {cvMeta.location}
-            </ContactRow>
-          </ul>
-
-          <div className="mt-7 flex flex-wrap gap-3">
-            <a
-              href={CV_URL}
-              download
-              className="group flex items-center gap-2 border-2 border-ink bg-orange px-5 py-3 font-pixel text-base text-ink shadow-[4px_4px_0_0_hsl(var(--mustard))] transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_hsl(var(--mustard))]"
-            >
-              <Download size={18} /> Download CV
+        <ul className="mt-8 flex flex-wrap justify-center gap-x-7 gap-y-3 text-sm sm:text-[15px]">
+          <Contact icon={<Mail size={16} />}>
+            <a className={link} href={`mailto:${cvMeta.email}`}>{cvMeta.email}</a>
+          </Contact>
+          <Contact icon={<Linkedin size={16} />}>
+            <a className={link} href={`https://linkedin.com/in/${cvMeta.linkedin}`} target="_blank" rel="noopener noreferrer">
+              {cvMeta.linkedin}
             </a>
-            <a
-              href={`https://github.com/${cvMeta.github}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 border-2 border-cream px-5 py-3 font-pixel text-base transition-colors hover:bg-cream hover:text-ink"
-            >
-              GitHub <ArrowUpRight size={18} />
+          </Contact>
+          <Contact icon={<Github size={16} />}>
+            <a className={link} href={`https://github.com/${cvMeta.github}`} target="_blank" rel="noopener noreferrer">
+              github.com/{cvMeta.github}
             </a>
-          </div>
+          </Contact>
+          <Contact icon={<MapPin size={16} />}>{cvMeta.location}</Contact>
+        </ul>
+
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <a
+            href={CV_URL}
+            download
+            className="flex items-center gap-2 border-2 border-ink bg-orange px-6 py-3 font-pixel text-base text-ink shadow-[4px_4px_0_0_hsl(var(--mustard))] transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_hsl(var(--mustard))]"
+          >
+            <Download size={18} /> Download CV
+          </a>
+          <a
+            href={`https://github.com/${cvMeta.github}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 border-2 border-cream px-6 py-3 font-pixel text-base transition-colors hover:bg-cream hover:text-ink"
+          >
+            GitHub <ArrowUpRight size={18} />
+          </a>
         </div>
-
-        <Window title="lunar_lounge.svg" lit={1} dark bodyClassName="p-0 sm:p-0" className="shadow-[8px_8px_0_0_hsl(var(--orange))]">
-          <LunarScene />
-          <div className="flex items-center justify-between border-t-2 border-ink bg-cream px-3 py-1.5 font-pixel text-xs text-ink sm:text-sm">
-            <span>Base: Milano, IT</span>
-            <span>Est. 2020 · open 24/7</span>
-          </div>
-        </Window>
       </div>
       <div className="stripes relative" aria-hidden />
     </section>

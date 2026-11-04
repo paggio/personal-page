@@ -4,7 +4,7 @@ import { SectionHeading, Window } from "@/components/Window";
 export function EducationSection() {
   return (
     <div>
-      <SectionHeading index="03" kicker="Archive" title="Education" id="education" />
+      <SectionHeading index="03" title="Education" id="education" />
       <div className="space-y-6">
         {education.map((e) => (
           <Window key={e.degree} title={`${e.degree.split(" ")[0].toLowerCase()}.diploma`} lit={0}>
