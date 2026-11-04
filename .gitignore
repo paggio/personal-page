@@ -35,3 +35,6 @@ locals/
 notes.md
 latest_cv/
 /nearform_logo.png
+
+# CV build output (the private PDF has phone, address and DOB: never commit it)
+cv/build/

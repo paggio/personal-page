@@ -1,8 +1,10 @@
 name: Deploy to GitHub Pages
 
+# main            → https://paggio.github.io/personal-page/
+# feature/** push → main stays at the root, the branch is published under /personal-page/preview/
 on:
   push:
-    branches: [main]
+    branches: [main, "feature/**"]
   workflow_dispatch:
 
 permissions:
@@ -18,13 +20,38 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout main (live site)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: site-main
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-      - run: npm ci --legacy-peer-deps
-      - run: npm run build
+
+      - name: Build main
+        working-directory: site-main
+        run: |
+          npm ci --legacy-peer-deps
+          npm run build
+          mkdir -p ../dist && cp -r dist/. ../dist/
+
+      - name: Checkout branch (preview)
+        if: github.ref != 'refs/heads/main'
+        uses: actions/checkout@v4
+        with:
+          path: site-preview
+
+      - name: Build preview under /personal-page/preview/
+        if: github.ref != 'refs/heads/main'
+        working-directory: site-preview
+        run: |
+          npm ci --legacy-peer-deps
+          npx tsc
+          npx vite build --base=/personal-page/preview/
+          mkdir -p ../dist/preview && cp -r dist/. ../dist/preview/
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

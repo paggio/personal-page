@@ -2,7 +2,8 @@
 
 ## What this project is
 A personal CV / portfolio web page for Mattia Pagetti (Senior Data Engineer).
-Single-page React app with a NeoBrutalism look powered by RetroUI components.
+Single-page React app. Look: retro-futurist "lunar lounge" — Pixel Poetry-style framed windows,
+pixel type and step timeline, plus a 70s space-age palette (night-sky navy, lounge orange, mustard, teal).
 
 ## Stack
 - **React 18 + TypeScript + Vite 6**
@@ -42,15 +43,25 @@ tailwind.config.js            — content paths + shadcn color tokens
 | `make clean` | Remove `node_modules/` and `dist/` |
 
 ## CV content source
-The original LaTeX source lives at `/home/mattia/workspace/trash_bin/latex_folder/`.
-All content is hardcoded into `src/data/cv.ts` — edit that file to update any CV data.
+Two copies of the content, keep them in sync:
+- `src/data/cv.ts` — the website.
+- `cv/cv.tex` — the PDF (XeTeX via Tectonic). `cv/CV_2026.tex` (public: no phone/address/DOB)
+  and `cv/CV_2026_private.tex` set `\ifprivate` and `\input` it. `make cv` rebuilds
+  `public/CV_2026.pdf`; `make cv-private` writes to the git-ignored `cv/build/`.
 **Do not put the phone number on the site** — it was intentionally removed.
 
-## Colour scheme (NeoBrutalism)
-- Background: warm off-white (`hsl(55 100% 96%)`)
-- Hero section: amber/yellow accent (`hsl(38 100% 60%)`)
-- Cards/borders: solid black `border-2 border-black` with `shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]`
-- CSS variables defined in `src/index.css`
+## Design system
+- Tokens in `src/index.css` (`--paper`, `--ink`, `--lunar`, `--orange`, `--mustard`, `--teal`…), exposed
+  as Tailwind colours (`bg-paper`, `text-orange`…). The same hex values are in `cv/cv.tex`.
+- Fonts: `font-display` = TeX Gyre Adventor (self-hosted in `public/fonts/`, same as the PDF),
+  `font-pixel` = Pixelify Sans, `font-sans` = Space Grotesk (Google Fonts, in `index.html`).
+- Building blocks in `src/components/Window.tsx`: `Window` (framed panel + title bar + dots),
+  `SectionHeading`, `Chip`, `renderBold`. Hero art is `LunarScene.tsx` (hand-written SVG).
+- RetroUI components in `src/components/retroui/` are no longer used by the page.
+
+## Branch previews
+`.github/workflows/deploy.yml` on a `feature/**` branch builds `main` at the site root and the
+branch under `/personal-page/preview/`. Pushing to `main` redeploys main only (preview disappears).
 
 ## Adding more RetroUI components
 ```bash
