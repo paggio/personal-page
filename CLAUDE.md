@@ -27,7 +27,7 @@ src/
   App.tsx                     — assembles all sections
   index.css                   — Tailwind directives + shadcn CSS variables
 public/
-  CV_2026_private.pdf         — downloadable PDF CV (drop updated PDFs here)
+  Mattia_Pagetti_CV_2026.pdf  — downloadable PDF CV (built by `make cv`; the file name is the download name)
 Makefile                      — see targets below
 components.json               — shadcn config (retroui registry registered here)
 tailwind.config.js            — content paths + shadcn color tokens
@@ -48,7 +48,7 @@ Two copies of the content, keep them in sync:
 - `src/data/cv.ts` — the website.
 - `cv/cv.tex` — the PDF (XeTeX via Tectonic). `cv/CV_2026.tex` (public: no phone/address/DOB)
   and `cv/CV_2026_private.tex` set `\ifprivate` and `\input` it. `make cv` rebuilds
-  `public/CV_2026.pdf`; `make cv-private` writes to the git-ignored `cv/build/`.
+  `public/Mattia_Pagetti_CV_2026.pdf`; `make cv-private` writes to the git-ignored `cv/build/`.
 **Do not put the phone number on the site** — it was intentionally removed.
 
 ## Design system

@@ -2,7 +2,7 @@ import { Download, Mail, MapPin, Linkedin, Github, ArrowUpRight } from "lucide-r
 import { cvMeta, skills } from "@/data/cv";
 import { renderBold } from "@/components/Window";
 
-export const CV_URL = `${import.meta.env.BASE_URL}CV_2026.pdf`;
+export const CV_URL = `${import.meta.env.BASE_URL}Mattia_Pagetti_CV_2026.pdf`;
 
 const NAV = [
   { href: "#experience", label: "Experience" },
@@ -31,7 +31,6 @@ export function TopBar() {
         <a
           href={CV_URL}
           download="Mattia_Pagetti_CV_2026.pdf"
-          type="application/pdf"
           className="flex items-center gap-2 border-2 border-ink bg-ink px-3 py-1 font-pixel text-[15px] text-cream transition-colors hover:bg-orange hover:text-ink"
         >
           <Download size={15} /> CV.pdf
@@ -131,7 +130,6 @@ export function Hero() {
           <a
             href={CV_URL}
             download="Mattia_Pagetti_CV_2026.pdf"
-            type="application/pdf"
             className="flex items-center gap-2 border-2 border-ink bg-orange px-6 py-3 font-pixel text-base text-ink shadow-[4px_4px_0_0_hsl(var(--mustard))] transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_hsl(var(--mustard))]"
           >
             <Download size={18} /> Download CV

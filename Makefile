@@ -6,7 +6,7 @@
 #    make build    — production build
 #    make preview  — serve the production build locally
 #    make clean    — remove installed packages and build output
-#    make cv       — rebuild the public PDF CV (public/CV_2026.pdf)
+#    make cv       — rebuild the public PDF CV (public/Mattia_Pagetti_CV_2026.pdf)
 #    make cv-private — build the private PDF CV (cv/build/, git-ignored)
 # ============================================================
 
@@ -53,7 +53,7 @@ clean:
 # The public variant has no phone, address or date of birth, and is what the site serves.
 cv:
 	cd cv && tectonic -o build CV_2026.tex
-	cp cv/build/CV_2026.pdf public/CV_2026.pdf
+	cp cv/build/CV_2026.pdf public/Mattia_Pagetti_CV_2026.pdf
 
 cv-private:
 	cd cv && tectonic -o build CV_2026_private.tex
