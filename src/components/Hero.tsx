@@ -6,6 +6,7 @@ export const CV_URL = `${import.meta.env.BASE_URL}Mattia_Pagetti_CV_2026.pdf`;
 
 const NAV = [
   { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Projects" },
   { href: "#skills", label: "Skills" },
   { href: "#education", label: "Education" },
   { href: "#publications", label: "Papers" },

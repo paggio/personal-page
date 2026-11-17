@@ -1,5 +1,6 @@
 import { Hero, StackTicker, TopBar } from "@/components/Hero";
 import { ExperienceSection } from "@/components/ExperienceSection";
+import { ProjectsSection } from "@/components/ProjectsSection";
 import { SkillsSection } from "@/components/SkillsSection";
 import { EducationSection } from "@/components/EducationSection";
 import { PublicationsSection } from "@/components/PublicationsSection";
@@ -32,6 +33,7 @@ function App() {
       <main>
         <Hero />
         <ExperienceSection />
+        <ProjectsSection />
         <SkillsSection />
         <section className="px-4 py-16 sm:px-6 md:py-24">
           <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-2 lg:gap-10">

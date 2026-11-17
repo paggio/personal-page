@@ -10,7 +10,7 @@ export const cvMeta = {
   dob: "21/02/1994",
   website: "paggio.github.io/personal-page",
   profile:
-    "Data engineer with six years of building data platforms on **AWS** and **Azure**: from **Spark**/**Iceberg** lakehouses and **Airflow** pipelines to **Databricks** platforms landed inside locked-down, multi-account cloud estates. Physics engineer by training, platform engineer by habit: I like infrastructure that is reproducible, secure by default and pleasant to use.",
+    "Data engineer with seven years of building data platforms on **AWS** and **Azure**: from **Spark**/**Iceberg** lakehouses and **Airflow** pipelines to **Databricks** platforms landed inside locked-down, multi-account cloud estates. Physics engineer by training, platform engineer by habit: I like infrastructure that is reproducible, secure by default and pleasant to use.",
   now: "Building Databricks platforms on AWS @ Nearform",
 };
 
@@ -105,16 +105,81 @@ export interface SkillGroup {
 
 export const skills: SkillGroup[] = [
   {
-    category: "Main Stack",
-    items: ["Spark", "Databricks", "Terraform", "Airflow", "Iceberg", "DBT", "Kubernetes", "Unity Catalog", "LangGraph", "SDD"],
+    category: "Data Platform",
+    items: ["Python", "SQL", "Spark", "Databricks", "Iceberg", "Delta Lake", "DBT", "Airflow", "Trino"],
+  },
+  {
+    category: "AI & Services",
+    items: ["LangGraph", "LangChain", "MCP", "Bedrock", "RAG", "Phoenix / OTel", "FastAPI", "GraphQL", "C# / .NET", "SDD"],
+  },
+  {
+    category: "Infra & DevOps",
+    items: ["Terraform", "Kubernetes", "Helm", "Docker", "GitHub Actions", "Prometheus", "Grafana"],
   },
   {
     category: "AWS",
-    items: ["Landing Zone (LZA)", "SCP / RCP", "PrivateLink", "KMS", "EMR", "Redshift", "Athena", "Glue", "S3", "ECS", "EKS", "Lambda", "Step Functions"],
+    items: ["PrivateLink", "KMS", "EMR", "Redshift", "Athena", "Glue", "S3", "ECS", "EKS", "Lambda", "Step Functions"],
   },
   {
-    category: "Azure & more",
-    items: ["Data Factory", "Data Lake", "Synapse", "Purview", "MongoDB", "RabbitMQ", "GitHub Actions"],
+    category: "Azure",
+    items: ["Data Factory", "Data Lake", "Synapse", "Purview"],
+  },
+  {
+    category: "Stores & Messaging",
+    items: ["PostgreSQL", "MongoDB", "OpenSearch", "SQS", "RabbitMQ"],
+  },
+];
+
+export interface Project {
+  name: string;
+  /** one-line pitch */
+  tagline: string;
+  url: string;
+  description: string;
+  highlights?: string[];
+  tags: string[];
+  featured?: boolean;
+}
+
+export const projects: Project[] = [
+  {
+    name: "agent-app-project",
+    tagline: "A RAG chatbot built by AI coding agents, across four repos, held together by contracts",
+    url: "https://github.com/Paggio/agent-app-project",
+    featured: true,
+    description:
+      "The control repo of a production-shaped AI chatbot split across four repos: a **FastAPI** + **LangGraph** backend, a **React** client, **Terraform**/**Helm** infrastructure and a black-box eval harness. **Claude Code** agents build each repo; this repo owns what none of them can: the contracts between them, the cross-repo changes and the proof they work together.",
+    highlights: [
+      "**Contract first**: OpenAPI and event schemas are frozen at a commit before any agent builds, and each repo checks conformance in its own CI.",
+      "**Agent lanes** as slash commands (/ship, /ship-correct, /realign): one PR per repo, a smoke suite on the joined stack, CI deploys the PR to AWS.",
+      "**On AWS**: CloudFront to an internal ALB in front of **EKS**, RDS Postgres, **OpenSearch** retrieval, SQS call ingestion, **Bedrock** (Claude) as the model, **Phoenix** traces and evals.",
+      "**20 ADRs** recording every decision and the cost it accepts.",
+    ],
+    tags: ["Claude Code", "LangGraph", "Bedrock", "RAG", "FastAPI", "EKS", "Terraform", "Helm", "Phoenix"],
+  },
+  {
+    name: "mcp-multi-server-chatbot",
+    tagline: "Talk to Redshift and Looker in plain language, through MCP",
+    url: "https://github.com/Paggio/mcp-multi-server-chatbot",
+    description:
+      "A React chat UI over a **FastAPI** server acting as an **MCP** client, which lets the model call tools exposed by custom MCP servers for **Redshift** and **Looker**. The LLM is pluggable (Ollama, OpenAI, Claude); everything runs in Docker Compose.",
+    tags: ["MCP", "FastAPI", "React", "Redshift", "Looker", "Docker"],
+  },
+  {
+    name: "k8s-data-engineering-lab",
+    tagline: "A data-engineering playground on a local Kubernetes cluster",
+    url: "https://github.com/Paggio/k8s-data-engineering-lab",
+    description:
+      "One make target brings up a four-node **kind** cluster with the **Spark Operator** running PySpark jobs, a Spark History Server with persistent logs, **Trino** over Hive data, **dbt** jobs, and **Prometheus**/**Grafana** dashboards behind an NGINX ingress.",
+    tags: ["Kubernetes", "Spark", "Trino", "dbt", "Prometheus", "Grafana"],
+  },
+  {
+    name: "redshift-service",
+    tagline: "GraphQL and HTTP APIs over analytics data in Redshift",
+    url: "https://github.com/Paggio/redshift-service",
+    description:
+      "A **C#**/**.NET** backend that serves analytics data from Redshift/Postgres through **GraphQL** (HotChocolate) and REST, with Dapper repositories, data loaders joining payment metrics with CRM data, and xUnit integration tests against a migrated test database.",
+    tags: ["C#", ".NET", "GraphQL", "Redshift", "Dapper", "xUnit"],
   },
 ];
 
